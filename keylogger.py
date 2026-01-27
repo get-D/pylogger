@@ -75,6 +75,7 @@ def write_file(keys):
 def on_release(key):
     try:
         if key == Key.esc:
+            print("Exiting...")
             return False
     
     except AttributeError:
