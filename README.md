@@ -32,9 +32,8 @@ It's part of a learning exercise in a crash course from **Grant Collins** to hel
 ## 🗂 File Structure
 
 C:.
-│   keylogger.py
-│   README.md
-│
-└───cryptography
-        decryptFile.py
-        generateKey.py
+├── keylogger.py
+├── README.md
+└── cryptography
+    ├── decryptFile.py
+    └── generateKey.py
