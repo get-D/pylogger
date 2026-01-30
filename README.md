@@ -6,7 +6,7 @@
 
 ---
 
-## 📚 About
+## About
 
 **PyLogger** is a simple Python project demonstrating how to capture and handle keyboard input events.  
 It's part of a learning exercise in a crash course from **Grant Collins** to help beginners understand:
@@ -20,7 +20,7 @@ It's part of a learning exercise in a crash course from **Grant Collins** to hel
 
 ---
 
-## 🧠 Features (Educational)
+## Features (Educational)
 
 - Captures keyboard input events  
 - Prints/records keys pressed  
@@ -29,11 +29,3 @@ It's part of a learning exercise in a crash course from **Grant Collins** to hel
 
 ---
 
-## 🗂 File Structure
-
-C:.
-├── keylogger.py
-├── README.md
-└── cryptography
-    ├── decryptFile.py
-    └── generateKey.py
