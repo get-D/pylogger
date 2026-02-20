@@ -1,6 +1,6 @@
 from cryptography.fernet import Fernet
 
-key = "ZKG-hah0-GiBfJOqhwbzobPEvh9z1xhFOPYIimr5Id4="
+key = "your encryption key"
 
 e_keys = "e_key_log.txt"
 e_sys_info = "e_sysInfo.txt"
